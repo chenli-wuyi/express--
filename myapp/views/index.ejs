@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	
+	<% include common/header.ejs %>
+
+
+	<div class="container-fluid">
+		
+		<h2>我是首页</h2>
+		
+		<% if (isLogin) {%>
+
+			<p>欢迎您, <%= isLogin %></p>
+		
+			<a href="/pinglun" class="btn btn-link">去评论页面</a>
+	
+			<a href="/users/logout" class="btn btn-link">注销</a>
+
+		<%} else {%>
+			<a href="/login" class="btn btn-link">登录</a>	
+		<%}%>
+		
+
+  	</div>
+</body>
+</html>

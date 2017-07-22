@@ -1,0 +1,104 @@
+<!-- 
+	做 评论 列表页面
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>express-评论列表</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+	
+	<% include ../common/header.ejs %>
+
+	<div class="container-fluid">
+		
+		<h2>评论列表</h2>
+
+
+		<a href="/pinglun/addpl" class="btn btn-link">添加评论</a>
+		
+		<!-- 
+			id: 1
+			评论人： 
+			评论内容：
+			评论时间：
+		 -->
+
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>评论内容</th>
+					<th>评论人</th>
+					<th>评论时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for(var i = 0; i < list.length; i++) {%>
+					<tr>
+						<td><%= list[i]._id %></td>
+						<td><%= list[i].content %></td>
+						<td><%= list[i].nickname %></td>
+						<td><%= list[i].time %></td>
+					</tr>
+				<%}%>
+			</tbody>
+		</table>
+
+		<nav>
+			<ul class="pagination">
+				
+				<% if (pageIndex == 1) {%>
+					<li class="disabled">
+			    		<a href="#"><span aria-hidden="true">&lt;&lt;</span></a>
+			    	</li>
+				<%} else {%>
+					<li>
+			    		<a href="/pinglun?pageIndex=<%= (pageIndex - 1) %>"><span aria-hidden="true">&lt;&lt;</span></a>
+			    	</li>
+				<%}%>
+
+		    	
+
+		    	<% for (var i = 0; i < pages; i++) {%>
+		    		<!-- <li class="<%= (i + 1 == pageIndex) ? 'active': '' %>">
+			    		<a href="/pinglun?pageIndex=<%= i + 1 %>"><%= i + 1 %></a>
+			    	</li> -->
+
+			    	<% if (i + 1 == pageIndex) {%>
+						<li class="active">
+							<a href="javascript:;"><%= i + 1%></a>
+						</li>
+			    	<%} else {%>
+						<li>
+							<a href="/pinglun?pageIndex=<%= +i + 1 %>"><%= i + 1%></a>
+						</li>
+			    	<%}%>
+		    	<%}%>
+
+				<% if (pageIndex == pages) {%>
+					<li class="disabled">
+			    		<a href="#" aria-label="Previous"><span aria-hidden="true">&gt;&gt;</span></a>
+			    	</li>
+				<%} else {%>
+					<li>
+			    		<a href="/pinglun?pageIndex=<%= (+pageIndex + 1) %>" aria-label="Previous"><span aria-hidden="true">&gt;&gt;</span></a>
+			    	</li>
+				<%}%>
+		    	
+		  	</ul>
+		</nav>
+
+	</div>
+
+
+</body>
+</html>
+
+
+
+
